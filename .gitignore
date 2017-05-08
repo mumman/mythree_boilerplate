@@ -1,0 +1,10 @@
+boilerplate.xmind
+node_modules/
+models/3dsmax/
+.idea/ 
+*.log
+*.max
+*.FBX
+*.py
+*.blend
+*.blend1

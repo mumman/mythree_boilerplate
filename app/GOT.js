@@ -52,16 +52,18 @@ var GOT={
 
 
     //提示信息
-    signLength:3,
+    signLength:4,
     sign0: {name:"sign0",infoTextName:"infoText0",position:new THREE.Vector3(0,1000,1000)},
     sign1: {name:"sign1",infoTextName:"infoText1",position:new THREE.Vector3(0,1000,2000)},
     sign2: {name:"sign2",infoTextName:"infoText2",position:new THREE.Vector3(-2000,1000,4000)},
+    sign3: {name:"sign2",infoTextName:"infoText3",position:new THREE.Vector3(-3000,5000,6000)},
 
 
     //信息提示栏,和上面的提示信息的infoTextName要对齐
     infoText0:{name:"3D看房house",content:"信号1的内容"},
     infoText1:{name:"3D看房house",content:"信号2的内容"},
-    infoText2:{name:"3D看房house",content:"信号3的内容"}
+    infoText2:{name:"3D看房house",content:"信号3的内容"},
+    infoText3:{name:"3D看房house",content:"信号4的内容"},
 
 
 

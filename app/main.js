@@ -1,7 +1,7 @@
 import '../css/app.css';
 
 import $ from "jquery";
-import sign from './Sign.js';
+import sign from './basic/Sign.js';
 import {switchViewGUI} from './basic/GUI.js';
 
 //基础设施

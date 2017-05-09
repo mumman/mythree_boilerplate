@@ -1,26 +1,10 @@
 /**
  * Created by Administrator on 2017/4/13.
  */
+import infobar from './Infobar.js';
 function Sign(){
 
-    var m1={
-        name:'m1',
-        position: new THREE.Vector3(0,1000,1000)
-    };
-    var m2={
-        name:'m2',
-        position: new THREE.Vector3(0,1000,2000)
-    };
-    var m3={
-        name:'m3',
-        position: new THREE.Vector3(-2000,1000,4000)
-    };
-
-
-
-    this.arr=[m1,m2,m3];
     this.group=new THREE.Group();
-
     this.canvas=null;//使用同一个canvas
     this.ctx=null;
     this.spriteMaterial=null;//都使用同一个材质
@@ -47,7 +31,6 @@ Sign.prototype={
         this.canvas=canvas;
         this.ctx=this.canvas.getContext('2d');
         this.spriteMaterial=new THREE.SpriteMaterial( {map:null, color: 0xffffff } );
-
         function generateSprite(){
 
             that.spriteMaterial.map=new THREE.CanvasTexture( that.canvas);
@@ -57,20 +40,20 @@ Sign.prototype={
             var sprite = new THREE.Sprite( that.spriteMaterial );
             sprite.scale.set(500, 500, 1);
             return sprite;
-
         }
 
-        //var sprite=generateSprite();
-        for(var i=0;i<this.arr.length;i++){
-            var meshPosition= this.arr[i].position;
-
+        for(var i=0; i<GOT.signLength;i++){
+            var meshPosition= GOT["sign"+i].position;
             var sprite=generateSprite();
-            sprite.name=this.arr[i].name+"sign";
+            sprite.infoTextName=GOT["sign"+i].infoTextName;
             sprite.position.copy(meshPosition);
             this.group.add(sprite);
-        }
-        scene.add(this.group)
 
+        }
+
+        scene.add(this.group);
+        //初始化infobar
+        infobar.initInfobar(scene);
     },
 
     signAnimation:function(time){
@@ -129,9 +112,12 @@ Sign.prototype={
     },
     eventSign:function(){
         if(this.isLock){
-
             var scope=this;
+            infobar.createInfobar(GOT[scope.currentPick.infoTextName], scope.currentPick.position);
+            infobar.showInfobar();
+
             this.group.remove(scope.currentPick);
+
             //恢复上一个选择.
             if(this.lastPick!==this.currentPick&&this.lastPick!==null){
                 this.group.add(this.lastPick);
@@ -141,8 +127,9 @@ Sign.prototype={
             //如果没点击其他sign,那么就回复最后一个选择,并把最后一个选择设置null
             this.timer=setTimeout(function(){
                 scope.group.add(scope.lastPick);
+                infobar.hideInfobar();
                 scope.lastPick=null;
-            },3000)
+            },7000)
         }
 
     }

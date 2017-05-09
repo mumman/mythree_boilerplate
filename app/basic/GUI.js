@@ -118,6 +118,13 @@ $fullScreen.click(function(){
 });
 
 
+
+
+
+
+
+
+
 export {switchViewGUI};
 
 
